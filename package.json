@@ -1,0 +1,19 @@
+{
+  "name": "@cwasm/jpeg-turbo",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": "LinusU/cwasm-jpeg-turbo",
+  "files": [
+    "index.d.ts",
+    "index.js",
+    "jpeg-turbo.wasm"
+  ],
+  "scripts": {
+    "prepare": "make jpeg-turbo.wasm",
+    "test": "make test"
+  },
+  "devDependencies": {
+    "lodepng": "^1.2.0",
+    "mocha": "^5.2.0"
+  }
+}
