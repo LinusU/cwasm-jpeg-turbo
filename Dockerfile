@@ -20,7 +20,7 @@ RUN curl -L https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-
 
 WORKDIR /code
 
-RUN git clone https://github.com/libjpeg-turbo/libjpeg-turbo.git && cd libjpeg-turbo && git checkout 2.0.0
+RUN git clone https://github.com/libjpeg-turbo/libjpeg-turbo.git && cd libjpeg-turbo && git checkout 2.0.3
 
 COPY include include
 COPY jconfig.h libjpeg-turbo/jconfig.h
