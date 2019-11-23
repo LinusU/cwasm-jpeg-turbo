@@ -10,16 +10,16 @@ const env = {
   longjmp () { throw new Error('Not implemented') }
 }
 
-const wasi_unstable = {
+const stubs = {
   proc_exit () { throw new Error('Syscall proc_exit not implemented') },
   fd_close () { throw new Error('Syscall fd_close not implemented') },
   fd_seek () { throw new Error('Syscall fd_seek not implemented') },
-  fd_write () { throw new Error('Syscall fd_write not implemented') },
+  fd_write () { throw new Error('Syscall fd_write not implemented') }
 }
 
 const code = fs.readFileSync(path.join(__dirname, 'jpeg-turbo.wasm'))
 const wasmModule = new WebAssembly.Module(code)
-const instance = new WebAssembly.Instance(wasmModule, { env, wasi_unstable })
+const instance = new WebAssembly.Instance(wasmModule, { env, wasi_unstable: stubs })
 
 exports.decode = function (input) {
   // Allocate memory to hand over the input data to WASM
@@ -53,7 +53,7 @@ exports.decode = function (input) {
 
   // Read returned metadata
   const metadata = new Uint32Array(instance.exports.memory.buffer, metadataPointer, 4)
-  const [width, height, jpegSubsamp, jpegColorspace] = metadata
+  const [width, height] = metadata
 
   // Free the metadata in WASM land
   instance.exports.free(metadataPointer)

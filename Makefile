@@ -5,4 +5,5 @@ jpeg-turbo.wasm: Dockerfile jconfig.h jconfigint.h
 	sh -c 'docker run --rm -it $$(docker build -q .) | base64 -D > jpeg-turbo.wasm'
 
 test: jpeg-turbo.wasm
+	@node_modules/.bin/standard
 	@node_modules/.bin/mocha
