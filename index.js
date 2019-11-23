@@ -3,6 +3,8 @@
 const fs = require('fs')
 const path = require('path')
 
+const ImageData = require('@canvas/image-data')
+
 const TJPF_RGBA = 7
 
 const env = {
@@ -87,5 +89,5 @@ exports.decode = function (input) {
   instance.exports.free(outputPointer)
 
   // Return decoded image as raw data
-  return { width, height, data: output }
+  return new ImageData(output, width, height)
 }
