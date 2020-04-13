@@ -26,7 +26,7 @@ RUN curl -L https://github.com/WebAssembly/binaryen/releases/download/1.39.1/bin
 
 WORKDIR /code
 
-RUN git clone https://github.com/libjpeg-turbo/libjpeg-turbo.git && cd libjpeg-turbo && git checkout 2.0.3
+RUN git clone https://github.com/libjpeg-turbo/libjpeg-turbo.git && cd libjpeg-turbo && git checkout 2.0.4
 
 COPY include include
 COPY jconfig.h libjpeg-turbo/jconfig.h
